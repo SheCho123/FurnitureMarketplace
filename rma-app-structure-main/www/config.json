@@ -1,0 +1,28 @@
+{
+    "dependencies": [
+        "./utils/StyleLoader.js",
+        "./utils/Navigator.js",
+        "./sub_dependencies/hashing.js"
+    ],
+    "styles":[
+        "./assets/styles/colors.css",
+        "./assets/styles/dimensions.css",
+        "./assets/styles/ceeses.css"
+    ],
+    "components": [
+        "./screens/screen",
+        "./components/base",
+        "./components/header",
+        "./components/day-segment"
+    ],
+    "start_screen": "FirstPage",
+    "screens": {
+        "FirstPage": true,
+        "Signup": true,
+        "Register": true,
+        "ForgotPassword": true,
+        "MainPage": true,
+        "RoomPage": true,
+        "ArticleDetails": true
+    }
+}
