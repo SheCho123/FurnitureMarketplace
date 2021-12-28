@@ -9,8 +9,10 @@ class ArticleDetails extends Screen {
 
     SwitchTo(){
         var picture = document.getElementsByClassName('shownPicture');
+        var nameOfArticle = document.getElementsByClassName('articleName');
         var firstDot = document.getElementById('firstPageDot');
         var secondDot = document.getElementById('secondPageDot');
+        var priceS = document.getElementById('smol');
         var desc = document.getElementById('des');
         var priceBig = document.getElementById('pri');
         var minus = document.getElementById('Minus')
@@ -34,12 +36,14 @@ class ArticleDetails extends Screen {
             if(secondDot.classList.contains('differentColor'))
             return;
             else{
+                priceS.style = "visibility: visible;";
                 firstDot.classList.remove('differentColor')
                 secondDot.classList.add('differentColor')
-                desc.innerHTML=` <br>
-                <br>
-                Yellow clever velvet features low arms 
-                with scatter cushions and smooth wooden white legs.`;
+                desc.classList.remove('pomjeriDescriptionUDesno');
+                desc.innerHTML=`<br>
+                Brown clever velvet features low arms 
+                with scatter cushions and smooth wooden brown legs.`;
+                priceBig.innerHTML=`${articles.furniture[whichOneClicked].Price}`;
             }
         })
 
@@ -47,19 +51,39 @@ class ArticleDetails extends Screen {
             if(firstDot.classList.contains('differentColor'))
             return;
             else{
+                priceS.style = "visibility: hidden;";
                 secondDot.classList.remove('differentColor')
                 firstDot.classList.add('differentColor')
-                //down[0].classList.add('hiddenVery')
-                desc.innerHTML=`Article ID: ${outerOrder.furniture[selectedChild-1].Id} <br>
+                desc.innerHTML=`Article ID: ${articles.furniture[whichOneClicked].Id} <br>
                 Name: Yellow Velvet Sofa <br>
                 Price: $ 𝟷,𝟸𝟿𝟺 <br>
                 Condition: Factory New <br>
                 Manufacturer: SheCho Inc. <br>`;
+                desc.classList.add('pomjeriDescriptionUDesno');
                 priceBig.innerHTML="";
             }
         })
+
+
         picture[0].src = ""
-        picture[0].src = `${outerOrder.furniture[selectedChild-1].Slika}`
+        nameOfArticle[0].innerHTML = ""
+        priceBig.innerHTML = ""
+        if(areTheySalesAndPopulars == true)
+        for(let i=0;i<salesAndPopulars.furniture.length;i++){
+            if(selectedChild.Id==salesAndPopulars.furniture[i].Id){
+                picture[0].src = `${salesAndPopulars.furniture[i].Slika}`
+                nameOfArticle[0].innerHTML = `${salesAndPopulars.furniture[i].Name}` 
+                priceBig.innerHTML = `${salesAndPopulars.furniture[i].Price}`
+                areTheySalesAndPopulars = false;
+            }
+        }
+        else
+        for(let i=0;i<outerOrder.furniture.length;i++){
+            if(selectedChild.Id==outerOrder.furniture[i].Id){
+                picture[0].src = `${outerOrder.furniture[i].Slika}`
+                nameOfArticle[0].innerHTML = `${outerOrder.furniture[i].Name}` 
+                priceBig.innerHTML = `${outerOrder.furniture[i].Price}`
+            }}
     }
 
 }

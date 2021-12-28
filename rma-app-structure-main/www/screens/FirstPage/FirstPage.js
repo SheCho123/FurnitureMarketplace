@@ -1,5 +1,3 @@
-// const SwitchToSignUp = document.querySelector('#SwitchToSignUp');
-
 class FirstPage extends Screen {
     static Name = 'FirstPage screen'
     static Id = 'FirstPage-screen';
@@ -25,7 +23,6 @@ class FirstPage extends Screen {
             Navigator.navigate("Register");
         })
     }
-
 }
 
 app.screens['FirstPage'] = FirstPage;

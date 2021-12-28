@@ -8,9 +8,13 @@ class RoomPage extends Screen {
     }
     
     SwitchTo(){
+        var e = 10000;
+        if(e<10000)
+        Navigator.navigate('AddArticle')  //AKO OVO IZBRISEM NEKAD "articles" NECE DA RADI U ADDARTICLE, NE ZNAM ZASTO ALI SE BOJIM I PITATI
         this.generateArticles(articles);
         this.sliderFunction();
         var menu = document.getElementsByClassName('menuIcon');
+        var account = document.getElementsByClassName('userIcon');
         var sortBy = document.getElementsByClassName('sortBy');
         var types = document.querySelectorAll('.categories');
 
@@ -19,15 +23,41 @@ class RoomPage extends Screen {
             selectedOption = menu[0].options[menu[0].selectedIndex].text;
             Navigator.navigate('RoomPage');
         })
+
+        account[0].addEventListener('change', () => {
+            if(account[0].options[account[0].selectedIndex].text == "Add Article")
+            Navigator.navigate("AddArticle")
+        })
+
         sortBy[0].addEventListener('change', () => {
             this.sortByOption(sortBy[0].options[sortBy[0].selectedIndex].text)
         })
+
         types.forEach(ele => {
             ele.addEventListener(('click'), ()=>{
                 types.forEach(element => {
                     element.classList.remove('categoriesActive');
                 });
                 ele.classList.add('categoriesActive');
+
+                selectedOption = ele.textContent;
+                outerOrder = articles;
+                typeOrder = {
+                    "furniture": []
+                };
+                if(selectedOption == "All")
+                this.generateArticles(articles)
+                for(let i=0, k=0;i<outerOrder.furniture.length;i++){
+                    if(selectedOption==outerOrder.furniture[i].Type){
+                        typeOrder.furniture[k]=outerOrder.furniture[i];
+                        k++;
+                    }
+                    if(selectedOption=="All"){
+                        typeOrder.furniture[k]=outerOrder.furniture[i];
+                        k++;
+                    }
+                }
+                this.generateArticles(typeOrder)
             })
         });
     
@@ -35,7 +65,7 @@ class RoomPage extends Screen {
 
  
     sortByOption(optionChosen){
-        var newOrder = articles;
+        var newOrder = outerOrder;
         var buffer;
         for(let i=0;i<newOrder.furniture.length;i++){
             if(newOrder.furniture[i].Price[0]=='$')
@@ -90,6 +120,7 @@ class RoomPage extends Screen {
     }
 
     generateArticles(optionPassed){
+        var divisionMaker;
         outerOrder = optionPassed;
         for(let i=0;i<optionPassed.furniture.length;i++){
             if(optionPassed.furniture[i].Price[0]!='$')
@@ -98,10 +129,13 @@ class RoomPage extends Screen {
         }
         const mainDiv = document.getElementById('velikiVELIKIdiv');
         mainDiv.innerHTML = "";
-        for(let i=1, k=0; i<=optionPassed.furniture.length/2; i++){
+        divisionMaker = optionPassed.furniture.length;
+        if(optionPassed.furniture.length%2!=0)
+        divisionMaker++;
+        for(let i=1, k=0; i<=divisionMaker/2; i++){
         var rowDiv = document.createElement('div');
         rowDiv.classList.add('divZaOveDole');
-        rowDiv.id = "oviDrugiDole"
+        rowDiv.id = "oviDrugiDole";
         mainDiv.appendChild(rowDiv);
 
         for(let j=0; j<2; j++, k++){
@@ -110,28 +144,34 @@ class RoomPage extends Screen {
             var infoContainer = document.createElement('div')
             var nameOf = document.createElement('div');
             var priceOf = document.createElement('div');
+            var priceText = document.createElement('p');
  
+            if(k>=optionPassed.furniture.length)
+            continue;
             windowDiv.classList.add('furnitureWindow')
             image.classList.add('Images');
             image.src = optionPassed.furniture[k].Slika;
-            image.alt = "No Picture Found!"
+            image.alt = "No Picture Found"
             infoContainer.classList.add('ponestaloMiJeImena');
             nameOf.classList.add('imeFurnitura');
             nameOf.innerHTML = optionPassed.furniture[k].Name;
             priceOf.classList.add('cijenaFurnitura');
-            priceOf.innerHTML = optionPassed.furniture[k].Price;
+            priceText.classList.add('biggerPrice');
+            priceText.innerHTML = optionPassed.furniture[k].Price;
 
             rowDiv.append(windowDiv);
             windowDiv.append(image);
             windowDiv.append(infoContainer);
             infoContainer.append(nameOf);
             infoContainer.append(priceOf);  
+            priceOf.append(priceText);
         }
     }
     var windowsInner = document.querySelectorAll('.furnitureWindow')
     for(let i=0;i<windowsInner.length;i++){
         windowsInner[i].addEventListener('click', () => {
-            selectedChild = outerOrder.furniture[i].Id
+            selectedChild = outerOrder.furniture[i];
+            whichOneClicked = i;
             Navigator.navigate('ArticleDetails')
         })} 
     }
@@ -163,13 +203,17 @@ class RoomPage extends Screen {
           const walk = (x - startX) * 3; //scroll-fast
           slider.scrollLeft = scrollLeft - walk;
         });
+        var e = 1000;
     }
 }
 
 app.screens['RoomPage'] = RoomPage;
 var selectedChild;
-var outerOrder = articles
+var selectedType = 'All';
+var outerOrder = articles;
 var windows = [];
+var typeOrder;
+var whichOneClicked;
 var articles = {
     "furniture":[
       {
@@ -177,7 +221,7 @@ var articles = {
         "Name": "White Wood Dining Set",
         "Price": "$899,99",
         "Slika": "/www/assets/images/Screenshot_225.png",
-        "Type": "Sofa"
+        "Type": "Chair"
       },
       {
         "Id": "2",
@@ -188,8 +232,8 @@ var articles = {
     },
     {
         "Id": "3",
-        "Name": "Dolante King Upholstered Bed",
-        "Price": "$899,99",
+        "Name": "Dolante King Upholstered Decor",
+        "Price": "$259,99",
         "Slika": "/www/assets/images/Screenshot_227.png",
         "Type": "Sets"
     },
@@ -275,7 +319,7 @@ var articles = {
         "Name": "White Futon Chair",
         "Price": "$229,99",
         "Slika": "/www/assets/images/Screenshot_238.png",
-        "Type": "Sets"
+        "Type": "Fireplaces"
     },
     {
         "Id": "16",

@@ -17,12 +17,13 @@
     ],
     "start_screen": "FirstPage",
     "screens": {
+        "RoomPage": true,
         "FirstPage": true,
         "Signup": true,
         "Register": true,
         "ForgotPassword": true,
         "MainPage": true,
-        "RoomPage": true,
-        "ArticleDetails": true
+        "ArticleDetails": true,
+        "AddArticle": true
     }
 }

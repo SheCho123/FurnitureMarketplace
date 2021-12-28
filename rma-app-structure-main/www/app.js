@@ -21,7 +21,7 @@ var app = {
                 app.setup.dependencies.shift();
                 app.setup.load_dep()
             }
-    
+            console.log(elem)
             document.head.append(elem);
         },
         prepare_app: function(){
@@ -43,6 +43,7 @@ var app = {
                     app.setup.load_components(); 
                 }
             );
+            
             //MOJE
             //ScriptLoader.load_scripts(app.config.sub_dependencies);
             //MOJE
