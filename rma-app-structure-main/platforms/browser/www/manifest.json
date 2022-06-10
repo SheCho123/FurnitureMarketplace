@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "ToDo App",
+  "short_name": "ToDo App",
+  "version": "ba.com.scilijas.rma",
+  "description": "ToDo App RMA 2021, Android Project Template",
+  "author": "Imran Plasto",
+  "icons": [],
+  "start_url": "index.html"
+}

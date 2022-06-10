@@ -1,0 +1,58 @@
+
+
+#home-screen {
+    background: #5B5454;   
+}
+
+.logo {
+
+    height: 91px;
+    width: 272px;
+
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.labela {
+    font-weight: bold; 
+    color: snow; 
+    font-size: x-large; 
+    font-family: sans-serif; 
+
+    margin-top: 60px;
+    margin-left: 50px;
+}
+
+.input { 
+    width: 300px;
+    height: 30px;
+
+    border-radius: 25px;
+
+    margin-left: 20px;
+    margin-top: 20px;
+
+    padding-left: 20px;
+
+    background-color: snow;
+    color: rgb(22, 22, 22);
+}
+
+.btn {
+    height: 50px;
+    width: 140px;
+
+    background-color: #63E095;
+    color: snow;
+    
+    margin-top: 150px;
+    margin-left: 110px;
+    margin-right: 110px;
+    margin-bottom: 50px;
+
+    border-radius: 15px;
+
+    font-size: large;
+    font-family: sans-serif;
+}
+

@@ -1,0 +1,21 @@
+{
+    "dependencies": [
+        "./utils/StyleLoader.js",
+        "./utils/Navigator.js"
+    ],
+    "styles":[
+        "./assets/styles/colors.css",
+        "./assets/styles/dimensions.css"
+    ],
+    "components": [
+        "./screens/screen",
+        "./components/base",
+        "./components/header",
+        "./components/day-segment"
+    ],
+    "start_screen": "log_in",
+    "screens": {
+        "log_in": true,
+        "sign_up": true
+    }
+}

@@ -1,0 +1,74 @@
+.onSaleStuff{ 
+  left: 499px;
+  position: relative;
+  animation: myfirst 5s 1;
+  animation-delay: 0.5s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.onSaleStuffTwo{
+    left: 287px;
+    position: relative;
+    animation: myfirst 5s 2;
+    animation-delay: 2.15s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.onSaleStuffThree{
+    left: 75px;
+    position: relative;
+    animation: myfirst 5s 2;
+    animation-delay: 3.8s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.mostPopularStuff{
+  right: 100px;
+  position: relative;
+  animation: myFourth 5s 1;
+  animation-delay: 1s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.mostPopularStuffTwo{
+    right: 262px;
+    position: relative;
+    animation: myFourth 5s 1;
+    animation-delay: 2.65s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.mostPopularStuffThree{
+    right: 424px;
+    position: relative;
+    animation: myFourth 5s 1;
+    animation-delay: 4.3s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes myFourth {
+    from{transform: translate(0px)}
+    to{transform: translate(570px)}
+}
+
+@keyframes myfirst {
+    from{transform: translate(0px)}
+    to{transform: translate(-570px)}
+} 
+
+.biggerPrice {
+    transform: scale(1, 1.5);
+    overflow: hidden;
+}
